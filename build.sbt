@@ -5,6 +5,9 @@ version in ThisBuild := "0.1.0-SNAPSHOT"
 // Build Settings
 scalaVersion in ThisBuild := "2.11.8"
 
+// Runtime properties
+lagomServiceLocatorPort in ThisBuild := 10000
+
 // Dependencies
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
