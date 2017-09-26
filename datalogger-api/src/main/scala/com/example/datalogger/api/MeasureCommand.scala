@@ -1,5 +1,8 @@
 package com.example.datalogger.api
 
+import akka.Done
+import com.lightbend.lagom.scaladsl.persistence.PersistentEntity.ReplyType
+import com.lightbend.lagom.scaladsl.playjson.JsonSerializer
 import org.joda.time.DateTime
 import org.joda.time.DateTime._
 
@@ -29,7 +32,7 @@ sealed trait MeasureCommand
   * @param metrics is a list of measures from device
   * @author jazumaquero
   */
-final case class AddMeasure(id: String, tstamp: DateTime, metrics: List[Measure]) extends MeasureCommand
+final case class AddMeasure(id: String, tstamp: DateTime, metrics: List[Measure]) extends MeasureCommand with ReplyType[Done]
 
 /**
   * Include all required formats to deal with {@link MeasureCommands}
@@ -47,9 +50,35 @@ object MeasureCommand {
   implicit val dateFormat = Format[DateTime](Reads.jodaDateReads(pattern), Writes.jodaDateWrites(pattern))
   /** Allows reading/writing {@link Measure} from/to json string **/
   implicit val measureFormat: Format[Measure] = Json.format[Measure]
-  /** Allows reading/writing a list of {@link Measure} from/to json string. **/
-  //implicit val listMeasureReads = Json.reads[List[Measure]]
-  //implicit val listMeasureWrites = Json.writes[List[Measure]]
   /** Allows reading/writing {@link AddMeasure} command from/to json string. **/
   implicit val addMeasureformat: Format[AddMeasure] = Json.format[AddMeasure]
+
+  /** Convenient access to all json serializers. **/
+  val serializers = Vector(JsonSerializer(addMeasureformat))
+
+  /**
+    * This applys allows to deal with serialization from  {@link MeasureCommand} sealed trait
+    *
+    * @param command to be serialized
+    * @return
+    */
+  def unapply(command: MeasureCommand): Option[(String, JsValue)] = {
+    val (prod: Product, sub) = command match {
+      case addMeasure: AddMeasure => (addMeasure, Json.toJson(addMeasure)(addMeasureformat))
+    }
+    Some(prod.productPrefix -> sub)
+  }
+
+  /**
+    * This applys allows to deal with de-serialization from  {@link MeasureCommand} sealed trait
+    *
+    * @param `class` reference is going to be deserialized
+    * @param data    in a json serialized form
+    * @return
+    */
+  def apply(`class`: String, data: JsValue): MeasureCommand = {
+    (`class` match {
+      case "AddMeasure" => Json.fromJson[AddMeasure](data)(addMeasureformat)
+    }).get
+  }
 }
