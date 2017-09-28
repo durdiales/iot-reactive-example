@@ -1,6 +1,8 @@
 package com.example.datalogger.impl
 
 import com.example.datalogger.api.DataLoggerService
+import com.lightbend.lagom.scaladsl.persistence.cassandra.CassandraPersistenceComponents
+import com.lightbend.lagom.scaladsl.pubsub.PubSubComponents
 import com.lightbend.lagom.scaladsl.server.{LagomApplication, LagomApplicationContext}
 import com.softwaremill.macwire._
 import play.api.libs.ws.ahc.AhcWSComponents
@@ -13,7 +15,12 @@ import play.api.libs.ws.ahc.AhcWSComponents
   */
 abstract class DataLoggerApplication(context: LagomApplicationContext)
   extends LagomApplication(context)
-    with AhcWSComponents {
+    with AhcWSComponents
+    with CassandraPersistenceComponents
+    with PubSubComponents{
 
   override lazy val lagomServer = serverFor[DataLoggerService](wire[DataLoggerServiceImpl])
+  override lazy val jsonSerializerRegistry = MeasureSerializerRegistry
+
+  persistentEntityRegistry.register(wire[MeasureEntity])
 }

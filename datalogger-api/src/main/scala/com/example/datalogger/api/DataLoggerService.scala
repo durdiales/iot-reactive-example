@@ -1,7 +1,8 @@
 package com.example.datalogger.api
 
-import akka.NotUsed
+import akka.{Done, NotUsed}
 import com.lightbend.lagom.scaladsl.api._
+import com.lightbend.lagom.scaladsl.api.broker.Topic
 import com.lightbend.lagom.scaladsl.api.transport.Method
 
 /**
@@ -17,12 +18,28 @@ trait DataLoggerService extends Service {
     *
     * @return
     */
-  def addMeasure(): ServiceCall[AddMeasure, NotUsed]
+  def addMeasure(): ServiceCall[AddMeasure, Done]
+
+  /**
+    * Allows publishing the measure to some topic
+    *
+    * @return
+    */
+  def publishMeasure(): Topic[AddMeasure]
 
   override def descriptor: Descriptor = {
     import Service._
     named("logger").withCalls(
       restCall(Method.POST, "/measure", addMeasure _)
-    )
+    ).withTopics(
+      topic[AddMeasure](DataLoggerService.AddMeasureTopic, publishMeasure)
+    ).withAutoAcl(true)
   }
+}
+
+/**
+  * Companion class from {@link DataLoggerService} within all static methods
+  */
+object DataLoggerService {
+  val AddMeasureTopic: String = "pub_measure"
 }

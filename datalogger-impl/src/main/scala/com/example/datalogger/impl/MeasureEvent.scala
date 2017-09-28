@@ -31,6 +31,8 @@ object MeasureEvent {
   val NumShards = 10
   /** TODO **/
   val Tag = AggregateEventTag.sharded[MeasureEvent](NumShards)
+  /** TODO **/
+  val Instance: AggregateEventTag[MeasureEvent] = AggregateEventTag[MeasureEvent]()
 
   import play.api.libs.json._
 
