@@ -30,6 +30,7 @@ lazy val `datalogger-impl` = (project in file("datalogger-impl"))
     libraryDependencies ++= Seq(
       lagomScaladslPersistenceCassandra,
       lagomScaladslKafkaBroker,
+      lagomScaladslPubSub,
       lagomScaladslTestKit,
       macwire,
       scalaTest
