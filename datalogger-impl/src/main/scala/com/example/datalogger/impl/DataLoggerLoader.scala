@@ -2,6 +2,7 @@ package com.example.datalogger.impl
 
 import com.example.datalogger.api.DataLoggerService
 import com.lightbend.lagom.scaladsl.api.ServiceLocator
+import com.lightbend.lagom.scaladsl.broker.kafka.LagomKafkaComponents
 import com.lightbend.lagom.scaladsl.server.{LagomApplicationContext, LagomApplicationLoader}
 
 /**
@@ -12,7 +13,7 @@ import com.lightbend.lagom.scaladsl.server.{LagomApplicationContext, LagomApplic
 class DataLoggerLoader extends LagomApplicationLoader {
 
   override def load(context: LagomApplicationContext) =
-    new DataLoggerApplication(context) {
+    new DataLoggerApplication(context) with LagomKafkaComponents {
       override def serviceLocator = ServiceLocator.NoServiceLocator
     }
 
