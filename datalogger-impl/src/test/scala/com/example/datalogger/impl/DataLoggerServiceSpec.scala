@@ -8,6 +8,8 @@ import com.lightbend.lagom.scaladsl.testkit.{ServiceTest, TestTopicComponents}
 import org.joda.time.DateTime
 import org.scalatest.{AsyncWordSpec, BeforeAndAfterAll, Matchers}
 
+import scala.concurrent.duration.FiniteDuration
+
 /**
   * Test to validate if {@link DataLoggerService} works fine.
   *
@@ -37,9 +39,14 @@ class DataLoggerServiceSpec extends AsyncWordSpec with Matchers with BeforeAndAf
       }
     }
     "publish new measure on topic " in {
-      val source = client.publishMeasure().subscribe.atMostOnceSource
-      val result = source.runWith(TestSink.probe[AddMeasure]).request(1).expectNext
-      result should equal(measurement)
+      client.addMeasure.invoke(measurement).map { _ =>
+        // Produce will sent message to the topic some time later that event were persisted,
+        // so that, it's required to include some delay (workaround to forget about configuration
+        // is putting some 'large' delay.
+        val source = client.publishMeasure().subscribe.atMostOnceSource
+        val result = source.runWith(TestSink.probe[AddMeasure]).requestNext(FiniteDuration(20, "seconds"))
+        result should equal(measurement)
+      }
     }
   }
 }
