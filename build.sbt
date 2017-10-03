@@ -11,9 +11,13 @@ lagomServiceLocatorPort in ThisBuild := 10000
 // Dependencies
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
+val sparkCore = "org.apache.spark" %% "spark-core" % "2.2.0"
+val sparkSql = "org.apache.spark" %% "spark-sql" % "2.2.0"
+val sparkStreaming = "org.apache.spark" %% "spark-streaming" % "2.2.0"
+val sparkSqlKafka = "org.apache.spark" %% "spark-sql-kafka-0-10" % "2.2.0"
 
 // Define global build in this multiproject
-lazy val `iot-reactive` = (project in file(".")).aggregate(`datalogger-api`, `datalogger-impl`)
+lazy val `iot-reactive` = (project in file(".")).aggregate(`datalogger-api`, `datalogger-impl`, `measure-analytics`)
 
 // Define datalogger-api project build
 lazy val `datalogger-api` = (project in file("datalogger-api"))
@@ -30,6 +34,7 @@ lazy val `datalogger-impl` = (project in file("datalogger-impl"))
     libraryDependencies ++= Seq(
       lagomScaladslPersistenceCassandra,
       lagomScaladslKafkaBroker,
+      lagomScaladslPubSub,
       lagomScaladslTestKit,
       macwire,
       scalaTest
@@ -39,3 +44,15 @@ lazy val `datalogger-impl` = (project in file("datalogger-impl"))
     lagomForkedTestSettings: _*
   )
   .dependsOn(`datalogger-api`)
+
+// Define measure-analytics project build
+lazy val `measure-analytics` = (project in file("measure-analytics"))
+  .settings(
+    libraryDependencies ++= Seq(
+      sparkCore,
+      sparkSql,
+      sparkStreaming,
+      sparkSqlKafka,
+      scalaTest
+    )
+  )
