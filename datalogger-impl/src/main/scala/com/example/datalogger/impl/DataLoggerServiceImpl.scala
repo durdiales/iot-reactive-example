@@ -24,7 +24,8 @@ class DataLoggerServiceImpl(persistentEntityRegistry: PersistentEntityRegistry, 
   override def addMeasure = ServiceCall { measurement =>
     logger.info(s"Requested following measurement: $measurement")
     persistentEntityRegistry.refFor[MeasureEntity](measurement.id).ask(measurement) map { reply =>
-      pubSubRegistry.refFor(TopicId[AddMeasure]).publish(measurement)
+      // TODO currently, using pub-sub causes some dead-letters that must be solved.
+      //pubSubRegistry.refFor(TopicId[AddMeasure]).publish(measurement)
       reply
     }
   }
