@@ -13,7 +13,7 @@ val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
 
 // Define global build in this multiproject
-lazy val `iot-reactive` = (project in file(".")).aggregate(`datalogger-api`, `datalogger-impl`)
+lazy val `iot-reactive` = (project in file(".")).aggregate(`datalogger-api`, `datalogger-impl`, `datareader-api`, `datareader-impl`)
 
 // Define datalogger-api project build
 lazy val `datalogger-api` = (project in file("datalogger-api"))
@@ -39,3 +39,28 @@ lazy val `datalogger-impl` = (project in file("datalogger-impl"))
     lagomForkedTestSettings: _*
   )
   .dependsOn(`datalogger-api`)
+
+// Define datareader-api project build
+lazy val `datareader-api` = (project in file("datareader-api"))
+  .settings(
+    libraryDependencies ++= Seq(
+      lagomScaladslApi, lagomScaladslPersistence
+    )
+  )
+
+// Define datalogger-impl project build
+lazy val `datareader-impl` = (project in file("datareader-impl"))
+  .enablePlugins(LagomScala)
+  .settings(
+    libraryDependencies ++= Seq(
+      lagomScaladslPersistenceCassandra,
+      lagomJavadslPersistence,
+      lagomScaladslTestKit,
+      macwire,
+      scalaTest
+    )
+  )
+  .settings(
+    lagomForkedTestSettings: _*
+  )
+  .dependsOn(`datareader-api`)
