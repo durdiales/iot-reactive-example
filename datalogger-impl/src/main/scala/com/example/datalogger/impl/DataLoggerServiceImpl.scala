@@ -4,7 +4,8 @@ import com.example.datalogger.api.{AddMeasure, DataLoggerService, GetLastMeasure
 import com.lightbend.lagom.scaladsl.api.ServiceCall
 import com.lightbend.lagom.scaladsl.api.broker.Topic
 import com.lightbend.lagom.scaladsl.broker.TopicProducer
-import com.lightbend.lagom.scaladsl.persistence.PersistentEntityRegistry
+import com.lightbend.lagom.scaladsl.persistence.{PersistentEntityRegistry, ReadSide}
+import com.lightbend.lagom.scaladsl.persistence.cassandra.{CassandraReadSide, CassandraSession}
 import org.slf4j.{Logger, LoggerFactory}
 
 import scala.concurrent.ExecutionContext
@@ -14,11 +15,16 @@ import scala.concurrent.ExecutionContext
   *
   * @author jazumaquero
   */
-class DataLoggerServiceImpl(persistentEntityRegistry: PersistentEntityRegistry)(implicit ctx: ExecutionContext) extends DataLoggerService {
+class DataLoggerServiceImpl(persistentEntityRegistry: PersistentEntityRegistry,
+                            cassandraReadSide: CassandraReadSide,
+                              readSide: ReadSide,
+                            session: CassandraSession)
+                           (implicit ctx: ExecutionContext) extends DataLoggerService {
   /** Just a simple logger. **/
   private final val logger: Logger = LoggerFactory.getLogger(classOf[DataLoggerServiceImpl])
 
   persistentEntityRegistry.register(new MeasureEntity)
+  readSide.register(new MeasureEventProcessor(session,cassandraReadSide))
 
   override def addMeasure = ServiceCall { measurement =>
     logger.info(s"Requested following measurement: $measurement")
