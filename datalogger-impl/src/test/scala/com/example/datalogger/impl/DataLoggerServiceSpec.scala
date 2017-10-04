@@ -48,5 +48,13 @@ class DataLoggerServiceSpec extends AsyncWordSpec with Matchers with BeforeAndAf
         result should equal(measurement)
       }
     }
+    "request for latest measure" in {
+      client.addMeasure.invoke(measurement).map { _ =>
+        client.getLatestMeasure(measurement.id).invoke map { result =>
+          result should equal(measurement)
+        }
+      }
+      assert(true)
+    }
   }
 }

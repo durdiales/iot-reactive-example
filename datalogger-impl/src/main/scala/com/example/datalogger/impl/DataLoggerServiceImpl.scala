@@ -1,6 +1,6 @@
 package com.example.datalogger.impl
 
-import com.example.datalogger.api.{AddMeasure, DataLoggerService}
+import com.example.datalogger.api.{AddMeasure, DataLoggerService, GetLastMeasure}
 import com.lightbend.lagom.scaladsl.api.ServiceCall
 import com.lightbend.lagom.scaladsl.api.broker.Topic
 import com.lightbend.lagom.scaladsl.broker.TopicProducer
@@ -23,6 +23,13 @@ class DataLoggerServiceImpl(persistentEntityRegistry: PersistentEntityRegistry)(
   override def addMeasure = ServiceCall { measurement =>
     logger.info(s"Requested following measurement: $measurement")
     persistentEntityRegistry.refFor[MeasureEntity](measurement.id).ask(measurement) map { reply =>
+      reply
+    }
+  }
+
+  override def getLatestMeasure(id: String) = ServiceCall { _ =>
+    logger.info(s"Requested measures for device id: $id")
+    persistentEntityRegistry.refFor[MeasureEntity](id).ask(GetLastMeasure) map { reply =>
       reply
     }
   }

@@ -34,6 +34,8 @@ sealed trait MeasureCommand
   */
 final case class AddMeasure(id: String, tstamp: DateTime, metrics: List[Measure]) extends MeasureCommand with ReplyType[Done]
 
+final case object GetLastMeasure extends MeasureCommand with ReplyType[AddMeasure]
+
 /**
   * Include all required formats to deal with {@link MeasureCommands}
   *
@@ -43,6 +45,7 @@ final case class AddMeasure(id: String, tstamp: DateTime, metrics: List[Measure]
 object MeasureCommand {
 
   import play.api.libs.json._
+  import JsonSerializer.emptySingletonFormat
 
   /** Literal that includes the way timestamp is going to be formatted **/
   protected val pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -54,7 +57,7 @@ object MeasureCommand {
   implicit val addMeasureformat: Format[AddMeasure] = Json.format[AddMeasure]
 
   /** Convenient access to all json serializers. **/
-  val serializers = Vector(JsonSerializer(addMeasureformat))
+  val serializers = Vector(JsonSerializer(addMeasureformat),JsonSerializer(emptySingletonFormat(GetLastMeasure)))
 
   /**
     * This applys allows to deal with serialization from  {@link MeasureCommand} sealed trait

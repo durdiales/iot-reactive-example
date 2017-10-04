@@ -1,7 +1,8 @@
 package com.example.datalogger.impl
 
 import akka.Done
-import com.example.datalogger.api.{AddMeasure, MeasureCommand}
+import com.example.datalogger.api.{AddMeasure, GetLastMeasure, MeasureCommand}
+import com.lightbend.lagom.scaladsl.api.transport.NotFound
 import com.lightbend.lagom.scaladsl.persistence.PersistentEntity
 
 final class MeasureEntity extends PersistentEntity {
@@ -20,5 +21,11 @@ final class MeasureEntity extends PersistentEntity {
     }
   }.onEvent {
     case (AddMeasureEvent(measure), state) => MeasureState(Some(measure), logged = true)
+  }.onReadOnlyCommand[GetLastMeasure.type, AddMeasure] {
+    case (_, ctx, state) =>
+      if (state.logged)
+        ctx.reply(state.command.get.asInstanceOf[AddMeasure])
+      else
+        throw NotFound("Missing entity!")
   }
 }
