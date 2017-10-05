@@ -40,7 +40,7 @@ class DataLoggerServiceImpl(persistentEntityRegistry: PersistentEntityRegistry,
     logger.info(s"Usign following query: $query")
     session.selectAll(query) map { rows =>
       rows.map(getAddMeasure(_))
-        .fold(AddMeasure("", DateTime.now, List())) { (x, y) =>
+        .fold(AddMeasure("", new DateTime(0), List())) { (x, y) =>
           val id = x.id
           val tstamp = if (x.tstamp.isAfter(y.tstamp)) x.tstamp else y.tstamp
           val metrics = x.metrics ++ y.metrics

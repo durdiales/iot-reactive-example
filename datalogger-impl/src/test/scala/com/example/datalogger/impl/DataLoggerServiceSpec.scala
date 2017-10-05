@@ -2,7 +2,7 @@ package com.example.datalogger.impl
 
 import akka.Done
 import akka.stream.testkit.scaladsl.TestSink
-import com.example.datalogger.api.{AddMeasure, DataLoggerService, Measure}
+import com.example.datalogger.api.{AddMeasure, DataLoggerService, GetMeasures, Measure}
 import com.lightbend.lagom.scaladsl.server.LocalServiceLocator
 import com.lightbend.lagom.scaladsl.testkit.{ServiceTest, TestTopicComponents}
 import org.joda.time.DateTime
@@ -52,6 +52,18 @@ class DataLoggerServiceSpec extends AsyncWordSpec with Matchers with BeforeAndAf
       client.addMeasure.invoke(measurement).map { _ =>
         client.getLatestMeasure(measurement.id).invoke map { result =>
           result should equal(measurement)
+        }
+      }
+      assert(true)
+    }
+    "request for measured datain a time range" in {
+      client.addMeasure.invoke(measurement).map { _ =>
+        val id = measurement.id
+        val name = measurement.metrics(0).name
+        val init = measurement.metrics(0).t
+        val end = init
+        client.getMeasures(id).invoke(GetMeasures(name, init, end)).map { response =>
+          response should equal(measurement)
         }
       }
       assert(true)

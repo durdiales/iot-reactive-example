@@ -89,6 +89,7 @@ object MeasureCommand {
     val (prod: Product, sub) = command match {
       case addMeasure: AddMeasure => (addMeasure, Json.toJson(addMeasure)(addMeasureformat))
       case getMeasures: GetMeasures => (getMeasures, Json.toJson(getMeasures)(getMeasuresFormat))
+      case GetLastMeasure => (GetLastMeasure, Json.toJson(GetLastMeasure)(emptySingletonFormat(GetLastMeasure)))
     }
     Some(prod.productPrefix -> sub)
   }
