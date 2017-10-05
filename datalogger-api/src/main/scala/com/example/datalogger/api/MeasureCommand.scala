@@ -34,6 +34,20 @@ sealed trait MeasureCommand
   */
 final case class AddMeasure(id: String, tstamp: DateTime, metrics: List[Measure]) extends MeasureCommand with ReplyType[Done]
 
+/**
+  * Defines
+  * @param name of the requested metric
+  * @param init timestamp when time series start
+  * @param end timestamp when time series end
+  * @author jazumaquero
+  */
+final case class GetMeasures(name: String, init: DateTime, end: DateTime) extends MeasureCommand
+
+/**
+  * Empty command used to request last measurement entity state
+  *
+  * @author jazumaquero
+  */
 final case object GetLastMeasure extends MeasureCommand with ReplyType[AddMeasure]
 
 /**
@@ -44,8 +58,8 @@ final case object GetLastMeasure extends MeasureCommand with ReplyType[AddMeasur
   */
 object MeasureCommand {
 
-  import play.api.libs.json._
   import JsonSerializer.emptySingletonFormat
+  import play.api.libs.json._
 
   /** Literal that includes the way timestamp is going to be formatted **/
   protected val pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -55,9 +69,15 @@ object MeasureCommand {
   implicit val measureFormat: Format[Measure] = Json.format[Measure]
   /** Allows reading/writing {@link AddMeasure} command from/to json string. **/
   implicit val addMeasureformat: Format[AddMeasure] = Json.format[AddMeasure]
+  /** Allows reading/writing {@link GetMeasures} command from/to json string. **/
+  implicit val getMeasuresFormat: Format[GetMeasures] = Json.format[GetMeasures]
 
   /** Convenient access to all json serializers. **/
-  val serializers = Vector(JsonSerializer(addMeasureformat),JsonSerializer(emptySingletonFormat(GetLastMeasure)))
+  val serializers = Vector(
+    JsonSerializer(addMeasureformat),
+    JsonSerializer(getMeasuresFormat),
+    JsonSerializer(emptySingletonFormat(GetLastMeasure))
+  )
 
   /**
     * This applys allows to deal with serialization from  {@link MeasureCommand} sealed trait
@@ -68,6 +88,7 @@ object MeasureCommand {
   def unapply(command: MeasureCommand): Option[(String, JsValue)] = {
     val (prod: Product, sub) = command match {
       case addMeasure: AddMeasure => (addMeasure, Json.toJson(addMeasure)(addMeasureformat))
+      case getMeasures: GetMeasures => (getMeasures, Json.toJson(getMeasures)(getMeasuresFormat))
     }
     Some(prod.productPrefix -> sub)
   }
@@ -82,6 +103,7 @@ object MeasureCommand {
   def apply(`class`: String, data: JsValue): MeasureCommand = {
     (`class` match {
       case "AddMeasure" => Json.fromJson[AddMeasure](data)(addMeasureformat)
+      case "GetMeasures" => Json.fromJson[GetMeasures](data)(getMeasuresFormat)
     }).get
   }
 }

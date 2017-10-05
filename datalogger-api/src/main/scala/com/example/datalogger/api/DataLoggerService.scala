@@ -21,6 +21,14 @@ trait DataLoggerService extends Service {
   def addMeasure(): ServiceCall[AddMeasure, Done]
 
   /**
+    * Endpoint used to get all measure from some metric from some device into a time range
+    *
+    * @param id
+    * @return
+    */
+  def getMeasures(id: String): ServiceCall[GetMeasures, AddMeasure]
+
+  /**
     * Endpoint used to get latest measure pushed from some device.
     *
     * @param id of the device
@@ -39,6 +47,7 @@ trait DataLoggerService extends Service {
     import Service._
     named("logger").withCalls(
       restCall(Method.POST, "/measure", addMeasure _),
+      pathCall("/measure/:id", getMeasures _),
       pathCall("/measure/latest/:id", getLatestMeasure _)
     ).withTopics(
       topic[AddMeasure](DataLoggerService.AddMeasureTopic, publishMeasure)
