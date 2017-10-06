@@ -16,6 +16,7 @@ val sparkSql = "org.apache.spark" %% "spark-sql" % "2.2.0"
 val sparkStreaming = "org.apache.spark" %% "spark-streaming" % "2.2.0"
 val sparkSqlKafka = "org.apache.spark" %% "spark-sql-kafka-0-10" % "2.2.0"
 val sparkCassandra = "com.datastax.spark" %% "spark-cassandra-connector" % "2.0.5"
+val sparkCassandraEmbedded = "com.datastax.spark" %% "spark-cassandra-connector-embedded" % "2.0.5" % Test
 
 // Define global build in this multiproject
 lazy val `iot-reactive` = (project in file(".")).aggregate(`datalogger-api`, `datalogger-impl`, `measure-analytics`)
@@ -55,6 +56,7 @@ lazy val `measure-analytics` = (project in file("measure-analytics"))
       sparkStreaming,
       sparkSqlKafka,
       sparkCassandra,
-      scalaTest
+      scalaTest,
+      sparkCassandraEmbedded
     )
   )
