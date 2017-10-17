@@ -1,13 +1,13 @@
 package com.example.measure.analytics.processing
 
 import com.example.measure.analytics.common.{SparkFixture, SparkMatcher}
-import org.apache.spark.sql.{DataFrame, Row}
+import org.apache.spark.sql.DataFrame
 import org.scalatest.{FlatSpec, Matchers}
 
 /**
   * This spec verifies that {@link MeasureEventDecoder} works as expected to
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 class MeasureEventDecoderSpec extends FlatSpec with Matchers with SparkMatcher with MeasureEventDecoder {
   /** Use spark session from fixture. **/

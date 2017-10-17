@@ -8,14 +8,14 @@ import com.lightbend.lagom.scaladsl.playjson.JsonSerializer
   *
   * @param command
   * @param logged
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 final case class MeasureState(command: Option[MeasureCommand], logged: Boolean)
 
 /**
   * Includes all static members from {@link MeasureState}
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 object MeasureState {
   /** Initial state. **/

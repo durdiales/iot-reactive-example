@@ -15,7 +15,7 @@ import scala.util.Try
   * @param table          where data is going to be stored
   * @param primaryKeys    put here all columns from dataframe that are going to be used as primary keys
   * @param clusteringKeys put here all columns from dataframe that are going to be used as clustering keys
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 class CassandraSink(keySpace: String,
                     table: String,

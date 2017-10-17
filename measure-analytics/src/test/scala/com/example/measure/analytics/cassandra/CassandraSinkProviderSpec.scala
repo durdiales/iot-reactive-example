@@ -1,13 +1,13 @@
 package com.example.measure.analytics.cassandra
 
 import com.datastax.spark.connector.cql.CassandraConnector
-import com.datastax.spark.connector.embedded.{EmbeddedCassandra, SparkTemplate, YamlTransformations}
+import com.datastax.spark.connector.embedded.{EmbeddedCassandra, SparkTemplate}
 import org.scalatest.{FlatSpec, Matchers}
 
 /**
   * Verifies that Cassandra sink works fine.
   *
-  * @author
+  * @author durdiales & jazumaquero
   */
 class CassandraSinkProviderSpec extends FlatSpec with Matchers with EmbeddedCassandra with SparkTemplate {
   // Ensure everything is properly configured

@@ -14,7 +14,7 @@ import scala.concurrent.ExecutionContext
 /**
   * Implementation of the {@link DataLoggerService}.
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 class DataLoggerServiceImpl(persistentEntityRegistry: PersistentEntityRegistry,
                             cassandraReadSide: CassandraReadSide,

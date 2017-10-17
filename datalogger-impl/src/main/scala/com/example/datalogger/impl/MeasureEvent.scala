@@ -17,14 +17,14 @@ sealed trait MeasureEvent extends AggregateEvent[MeasureEvent] {
   * This trait defines the event related to the {@link AddMeasure} command.
   *
   * @param measure
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 final case class AddMeasureEvent(measure: AddMeasure) extends MeasureEvent
 
 /**
   * Includes all static members from {@link MeasureEvent} trait
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 object MeasureEvent {
   /** TODO **/

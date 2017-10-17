@@ -13,14 +13,14 @@ import org.joda.time.DateTime._
   * @param name  is the name of the metric has been measured.
   * @param value is the value of the metric has been measured.
   * @param t     is when the value of the metrics was measured.
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 final case class Measure(name: String, value: Double, t: DateTime = now())
 
 /**
   * Common trait that defines all possible commands related to measurement domain.
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 sealed trait MeasureCommand
 
@@ -30,7 +30,7 @@ sealed trait MeasureCommand
   * @param id      from device who is sending metrics.
   * @param tstamp  when metrics where sent.
   * @param metrics is a list of measures from device
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 final case class AddMeasure(id: String, tstamp: DateTime, metrics: List[Measure]) extends MeasureCommand with ReplyType[Done]
 
@@ -39,21 +39,21 @@ final case class AddMeasure(id: String, tstamp: DateTime, metrics: List[Measure]
   * @param name of the requested metric
   * @param init timestamp when time series start
   * @param end timestamp when time series end
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 final case class GetMeasures(name: String, init: DateTime, end: DateTime) extends MeasureCommand
 
 /**
   * Empty command used to request last measurement entity state
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 final case object GetLastMeasure extends MeasureCommand with ReplyType[AddMeasure]
 
 /**
   * Include all required formats to deal with {@link MeasureCommands}
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   * @todo Load
   */
 object MeasureCommand {

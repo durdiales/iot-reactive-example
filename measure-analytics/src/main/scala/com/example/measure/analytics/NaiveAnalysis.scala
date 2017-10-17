@@ -7,7 +7,7 @@ import com.example.measure.analytics.source.KafkaJsonEventSource
 /**
   * Just some simple sample of how to print on console a flatten version of the measure events.
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 object NaiveAnalysis extends App with SparkConfig with KafkaJsonEventSource with MeasureEventDecoder {
   override protected val master = "local[*]"

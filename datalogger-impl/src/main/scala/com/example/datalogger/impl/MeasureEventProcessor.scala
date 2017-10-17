@@ -17,7 +17,7 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
   * @param session
   * @param readSide
   * @param ctx
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 class MeasureEventProcessor(session: CassandraSession, readSide: CassandraReadSide)
                            (implicit ctx: ExecutionContext) extends ReadSideProcessor[MeasureEvent] {
@@ -91,7 +91,7 @@ class MeasureEventProcessor(session: CassandraSession, readSide: CassandraReadSi
   * Includes all queries that may be used either by the {@link MeasureEventProcessor} or by any
   * instance of the {@link CassandraSession} in order to execute some query.
   *
-  * @author jazumaquero
+  * @author durdiales & jazumaquero
   */
 object MeasureEventProcessor {
   /** Name of the table where measures are going to be stored. **/
