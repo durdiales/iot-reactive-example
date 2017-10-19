@@ -6,3 +6,14 @@ This repository contains some code examples focused on developing some IoT (Inte
 
 In order to get a deeper knowledge about how functional programming may help to develop modern reactive platforms, focus will be on how to develop some multi-tier system, that will include some of the most required features in modern systems, among others: based on microservices, using some NoSQL persistent storage, and processing input data for near-real-time analytics.
 
+## Specifications
+
+-	Git
+-	IDE - IntelliJ 17.x
+-	sbt 0.13.x 
+-	Scala 2.11.8 or later
+-	Python 2.7
+-	pip
+-	cqlsh added to Python 2.7 for Connection to Cassandra
+
+
