@@ -1,0 +1,23 @@
+-------------------------------------
+-- CQL Commands iot-reactive.example:
+-------------------------------------
+
+from cassandra.cluster import Cluster
+cluster = Cluster(['localhost'], port=4000)
+session = cluster.connect('datalogger')
+
+cluster.metadata
+
+cluster.metadata.keyspaces
+
+cluster.metadata.keyspaces[u'datalogger'].tables
+
+cluster.metadata.keyspaces[u'datalogger'].tables[u'measures']
+
+cluster.metadata.keyspaces[u'datalogger'].tables[u'measures'].columns
+
+session.execute
+
+session.execute("SELECT * from measures")
+
+for row in session.execute("SELECT * from measures"): print row
