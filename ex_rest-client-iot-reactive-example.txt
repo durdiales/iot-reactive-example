@@ -1,0 +1,52 @@
+---------------------------------------
+-- ARC (Advanced Rest Client)        --
+---------------------------------------
+
+----------------------------------------------------
+-- Http Resquest Examples:
+----------------------------------------------------
+
+----------------------------------------------------
+1. Add Measure:
+----------------------------------------------------
+
+Method: POST
+Request URL: http://localhost:9000/measure
+Headers:
+        Header name: Content-Type
+		Header value: application/json
+Body:
+        Body Content type: application/json
+		Editor view: Text input
+		{ 
+		  "id": "foo" ,  
+		  "tstamp" :"2017-10-03T02:05:00.000Z" ,
+		  "metrics" : [
+			{"name":"v1", "value": 10.00, "t" :"2017-10-19T02:01:00.001Z"},
+			{"name":"v2", "value": 20.00, "t" :"2017-10-19T02:01:00.002Z"}
+		  ] 
+		}
+
+		
+----------------------------------------------------
+2. Get Measures for :id
+----------------------------------------------------		
+
+Method: GET
+Request URL: http://localhost:9000/measure/foo
+Headers:
+        Header name: Content-Type
+		Header value: application/json		
+----------------------------------------------------
+3. GetLatest Measure for :id
+----------------------------------------------------
+
+Method: GET
+Request URL: http://localhost:9000/measure/latest/foo
+Headers:
+        Header name: Content-Type
+		Header value: application/json
+			
+
+		
+		
