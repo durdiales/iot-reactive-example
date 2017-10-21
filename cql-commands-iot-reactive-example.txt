@@ -1,6 +1,10 @@
--------------------------------------
--- CQL Commands iot-reactive.example:
--------------------------------------
+---------------------------------------
+-- CQL Commands iot-reactive.example
+---------------------------------------
+
+----------------------------------------------------
+-- Connection to Database and metadata descriptions:
+----------------------------------------------------
 
 from cassandra.cluster import Cluster
 cluster = Cluster(['localhost'], port=4000)
@@ -16,8 +20,22 @@ cluster.metadata.keyspaces[u'datalogger'].tables[u'measures']
 
 cluster.metadata.keyspaces[u'datalogger'].tables[u'measures'].columns
 
-session.execute
+--------------------------------------------------------------------------
+-- TABLE: datalogger.measures - queries to get data after
+          POST Rest Client to Datalogger Service:
+--------------------------------------------------------------------------
 
-session.execute("SELECT * from measures")
+for row in session.execute("SELECT * from datalogger.measures"): print row
 
-for row in session.execute("SELECT * from measures"): print row
+for row in session.execute("SELECT * from datalogger.measures WHERE id='foo' and name = 'v1'"): print row
+
+for row in session.execute("SELECT * from datalogger.measures WHERE id='foo' and name in('v1','v2')"): print row
+
+-----------------------------------------------------------------------------
+-- TABLE: datalogger.naive - queries to get data after running
+          measure-analytics -- NaivePersistentAnalysis (Spark Streaming Job):
+-----------------------------------------------------------------------------
+
+for row in session.execute("SELECT * from datalogger.naive"): print row
+
+for row in session.execute("SELECT * from datalogger.naive WHERE id='foo' and name in('v1','v2')"): print row
