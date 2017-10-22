@@ -24,3 +24,7 @@ In order to get a deeper knowledge about how functional programming may help to 
 ## Http Resquest Examples: ARC (Advanced Rest Client)
 
 -   ex_rest-client-iot-reactive-example.txt
+
+## Cql Commands to get data inserted into Cassandra: Dev Environment
+
+-   ex_cql-commands-iot-reactive-example.txt
