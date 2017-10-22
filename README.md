@@ -20,3 +20,7 @@ In order to get a deeper knowledge about how functional programming may help to 
 
 -   One command to start all > sbt clean runAll
 -   Hot reload code
+
+## Http Resquest Examples: ARC (Advanced Rest Client)
+
+-   ex_rest-client-iot-reactive-example.txt
