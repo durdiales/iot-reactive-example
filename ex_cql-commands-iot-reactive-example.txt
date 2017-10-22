@@ -27,7 +27,7 @@ cluster.metadata.keyspaces[u'datalogger'].tables[u'measures'].columns
 
 for row in session.execute("SELECT * from datalogger.measures"): print row
 
-for row in session.execute("SELECT * from datalogger.measures WHERE id='foo' and name = 'v1'"): print row
+for row in session.execute("SELECT * from datalogger.measures WHERE id='foo' and name='v1'"): print row
 
 for row in session.execute("SELECT * from datalogger.measures WHERE id='foo' and name in('v1','v2')"): print row
 
@@ -37,5 +37,7 @@ for row in session.execute("SELECT * from datalogger.measures WHERE id='foo' and
 -----------------------------------------------------------------------------
 
 for row in session.execute("SELECT * from datalogger.naive"): print row
+
+for row in session.execute("SELECT * from datalogger.naive WHERE id='foo' and name='v1'"): print row
 
 for row in session.execute("SELECT * from datalogger.naive WHERE id='foo' and name in('v1','v2')"): print row
