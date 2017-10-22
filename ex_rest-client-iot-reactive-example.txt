@@ -2,6 +2,8 @@
 -- ARC (Advanced Rest Client)        --
 ---------------------------------------
 
+https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo
+
 ----------------------------------------------------
 -- Http Resquest Examples:
 ----------------------------------------------------
@@ -18,25 +20,34 @@ Headers:
 Body:
         Body Content type: application/json
 		Editor view: Text input
-		{ 
-		  "id": "foo" ,  
-		  "tstamp" :"2017-10-03T02:05:00.000Z" ,
+		{
+		  "id": "foo" ,
+		  "tstamp" :"2017-10-26T02:15:00.000Z" ,
 		  "metrics" : [
-			{"name":"v1", "value": 10.00, "t" :"2017-10-19T02:01:00.001Z"},
-			{"name":"v2", "value": 20.00, "t" :"2017-10-19T02:01:00.002Z"}
-		  ] 
+			{"name":"v1", "value": 10.00, "t" :"2017-10-26T02:15:00.001Z"},
+			{"name":"v2", "value": 20.00, "t" :"2017-10-26T02:15:00.002Z"}
+		  ]
 		}
 
-		
 ----------------------------------------------------
 2. Get Measures for :id
-----------------------------------------------------		
+       request body needs: name, init, end
+----------------------------------------------------
 
-Method: GET
+Method: POST
 Request URL: http://localhost:9000/measure/foo
 Headers:
         Header name: Content-Type
-		Header value: application/json		
+		Header value: application/json
+Body:
+        Body Content type: application/json
+		Editor view: Text input
+		{
+		  "name": "v1",
+		  "init": "2017-10-26T02:01:00.000Z",
+		  "end": "2017-10-26T02:20:00.000Z"
+        }
+
 ----------------------------------------------------
 3. GetLatest Measure for :id
 ----------------------------------------------------
@@ -46,7 +57,3 @@ Request URL: http://localhost:9000/measure/latest/foo
 Headers:
         Header name: Content-Type
 		Header value: application/json
-			
-
-		
-		
