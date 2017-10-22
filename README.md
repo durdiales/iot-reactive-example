@@ -16,4 +16,7 @@ In order to get a deeper knowledge about how functional programming may help to 
 -	pip
 -	cqlsh added to Python 2.7 for Connection to Cassandra
 
+## Running Project: Dev Environment
 
+-   One command to start all > sbt clean runAll
+-   Hot reload code
