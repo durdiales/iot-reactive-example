@@ -25,6 +25,15 @@ In order to get a deeper knowledge about how functional programming may help to 
 
 -   ex_rest-client-iot-reactive-example.txt
 
+## cqlsh on Windows
+
+-   cd C:/Python27  
+-   pip install cqlsh -> will be added to: C:\Python27\Scripts
+-   run python   
+    Python 2.7.13 (v2.7.13:a06454b1afa1, Dec 17 2016, 20:42:59) [MSC v.1500 32 bit (Intel)] on win32
+    Type "help", "copyright", "credits" or "license" for more information.
+-   Cql Commands using: ex_cql-commands-iot-reactive-example.txt
+
 ## Cql Commands to get data from Cassandra: Dev Environment: Dev Environment
 
 -   ex_cql-commands-iot-reactive-example.txt
