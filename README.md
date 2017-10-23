@@ -34,6 +34,6 @@ In order to get a deeper knowledge about how functional programming may help to 
     Type "help", "copyright", "credits" or "license" for more information.
 -   Cql Commands using: ex_cql-commands-iot-reactive-example.txt
 
-## Cql Commands to get data from Cassandra: Dev Environment: Dev Environment
+## Cql Commands to get data from Cassandra: Dev Environment
 
 -   ex_cql-commands-iot-reactive-example.txt
