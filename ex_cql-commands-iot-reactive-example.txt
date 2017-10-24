@@ -21,7 +21,7 @@ cluster.metadata.keyspaces[u'datalogger'].tables[u'measures']
 cluster.metadata.keyspaces[u'datalogger'].tables[u'measures'].columns
 
 --------------------------------------------------------------------------
--- TABLE: datalogger.measures - queries to get data after
+--  TABLE: datalogger.measures - queries to get data after
           POST Rest Client to Datalogger Service:
 --------------------------------------------------------------------------
 
