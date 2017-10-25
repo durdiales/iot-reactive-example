@@ -61,3 +61,10 @@ In order to get a deeper knowledge about how functional programming may help to 
 -   run in console > netstat -ao
 -   see PID is using port:4099
 -   kill -9 PID
+
+-   macOS Sierra version 10.12.6:
+    
+    There are some problems related with host, references:
+    - https://github.com/lagom/online-auction-scala/issues/49
+    - https://thoeni.io/post/macos-sierra-java/
+    
