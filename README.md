@@ -18,12 +18,13 @@ In order to get a deeper knowledge about how functional programming may help to 
 
 ## Running Project: Dev Environment
 
--   One command to start all > sbt clean runAll
+-   One command to start all (use Console) > sbt clean runAll
 -   Hot reload code
 
 ## Http Resquest Examples: ARC (Advanced Rest Client)
 
--   ex_rest-client-iot-reactive-example.txt
+-   Add/Get data to/from service (file in the project):
+    - ex_rest-client-iot-reactive-example.txt
 
 ## cqlsh on Windows
 
@@ -36,7 +37,8 @@ In order to get a deeper knowledge about how functional programming may help to 
 
 ## Cql Commands to get data from Cassandra: Dev Environment
 
--   ex_cql-commands-iot-reactive-example.txt
+-   Query data from Cassandra (file in the project):
+    - ex_cql-commands-iot-reactive-example.txt
 
 ## Measure Analytics
 
@@ -48,6 +50,10 @@ In order to get a deeper knowledge about how functional programming may help to 
 -   Create env variable: 
     HADOOP_HOME=C:/hadoop-2.7.1
     HADOOP_HOME_BIN=C:/hadoop-2.7.1/bin and add them to Path
+
+-   Inside IntelliJ IDE, run:
+    - first: NaiveAnalysis.scala (write output to Console)
+    - second: NaivePersistentAnalysis.scala (write output to Cassandra)
 
 ## Some Considerations
 
@@ -67,4 +73,3 @@ In order to get a deeper knowledge about how functional programming may help to 
     There are some problems related with host, references:
     - https://github.com/lagom/online-auction-scala/issues/49
     - https://thoeni.io/post/macos-sierra-java/
-    
