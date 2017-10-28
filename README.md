@@ -73,3 +73,8 @@ In order to get a deeper knowledge about how functional programming may help to 
     There are some problems related with host, references:
     - https://github.com/lagom/online-auction-scala/issues/49
     - https://thoeni.io/post/macos-sierra-java/
+    
+## Lambda World 2017 Slides
+
+- Slides about talk in Lambda World 2017 (file in the project):
+    - LambdaWorld17_iot example with Lagom_26 Oct 2017.pdf
