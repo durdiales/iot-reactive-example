@@ -9,7 +9,7 @@ In order to get a deeper knowledge about how functional programming may help to 
 ## Specifications
 
 -	Git
--	IDE - IntelliJ 17.x (https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows&code=IIC)
+-	IDE - IntelliJ 18.x (https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows&code=IIC)
 -	sbt 0.13.x (http://www.scala-sbt.org/download.html)
 -	Scala 2.11.8 or later (https://downloads.lightbend.com/scala/2.12.4/scala-2.12.4.msi) 
 -	Python 2.7
@@ -73,8 +73,3 @@ In order to get a deeper knowledge about how functional programming may help to 
     There are some problems related with host, references:
     - https://github.com/lagom/online-auction-scala/issues/49
     - https://thoeni.io/post/macos-sierra-java/
-    
-## Lambda World 2017 Slides
-
-- Slides about talk in Lambda World 2017 (file in the project):
-    - LambdaWorld17_iot example with Lagom_26 Oct 2017.pdf
