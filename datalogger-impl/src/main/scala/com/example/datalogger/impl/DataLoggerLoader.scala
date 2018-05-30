@@ -9,7 +9,7 @@ import com.lightbend.lagom.scaladsl.server.{LagomApplication, LagomApplicationCo
 /**
   * Loads the implementation of the data logger api defined on {@link DataLoggerService} trait.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 class DataLoggerLoader extends LagomApplicationLoader {
 

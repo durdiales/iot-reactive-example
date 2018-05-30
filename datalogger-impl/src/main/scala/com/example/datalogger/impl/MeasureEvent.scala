@@ -7,7 +7,7 @@ import com.lightbend.lagom.scaladsl.playjson.JsonSerializer
 /**
   * This trait should be extend by any event related to some {@link MeasureCommand}
   *
-  * @author jazumaquero
+  * @author durdiales
   */
 sealed trait MeasureEvent extends AggregateEvent[MeasureEvent] {
   override def aggregateTag: AggregateEventShards[MeasureEvent] = MeasureEvent.Tag
@@ -17,14 +17,14 @@ sealed trait MeasureEvent extends AggregateEvent[MeasureEvent] {
   * This trait defines the event related to the {@link AddMeasure} command.
   *
   * @param measure
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 final case class AddMeasureEvent(measure: AddMeasure) extends MeasureEvent
 
 /**
   * Includes all static members from {@link MeasureEvent} trait
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 object MeasureEvent {
   /** TODO **/

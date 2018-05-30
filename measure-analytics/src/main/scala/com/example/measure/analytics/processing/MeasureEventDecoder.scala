@@ -8,7 +8,7 @@ import org.apache.spark.sql.types._
   * Give some transformation method that allows to extract measures from some {@link DataFrame}
   * that have a column with those measured encoded in JSON with the known format.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 trait MeasureEventDecoder {
 

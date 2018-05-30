@@ -18,7 +18,7 @@ import scala.util.{Failure, Success, Try}
   * - primaryKeys    put here all columns from dataframe that are going to be used as primary keys
   * - clusteringKeys put here all columns from dataframe that are going to be used as clustering keys
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 class CassandraSinkProvider extends StreamSinkProvider {
 

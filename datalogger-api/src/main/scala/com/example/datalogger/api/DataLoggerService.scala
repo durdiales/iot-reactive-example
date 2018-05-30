@@ -10,7 +10,7 @@ import com.lightbend.lagom.scaladsl.api.transport.Method
   *
   * Initially, we may consider that there is only one endpoint for include new measures.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 trait DataLoggerService extends Service {
   /**

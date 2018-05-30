@@ -10,7 +10,7 @@ import play.api.libs.ws.ahc.AhcWSComponents
   * Abstract application class used to configure and load the sever is going to run the class
   *
   * @param context
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 abstract class DataLoggerApplication(context: LagomApplicationContext)
   extends LagomApplication(context)

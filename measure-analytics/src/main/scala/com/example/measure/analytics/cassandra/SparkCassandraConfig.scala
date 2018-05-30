@@ -7,7 +7,7 @@ import org.apache.spark.SparkConf
 /**
   * Use instead of {@link SparkConfig} to allow connecting with Cassandra.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 trait SparkCassandraConfig extends SparkConfig {
   /** Current version is some host from the cluster **/

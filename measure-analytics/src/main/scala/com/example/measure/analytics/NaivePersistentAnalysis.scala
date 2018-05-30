@@ -7,7 +7,7 @@ import com.example.measure.analytics.source.KafkaJsonEventSource
 /**
   * Just some simple sample of how to persist on Cassandra a flatten version of the measure events.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 object NaivePersistentAnalysis extends App with SparkCassandraConfig with KafkaJsonEventSource with MeasureEventDecoder {
   override protected val master = "local[*]"
