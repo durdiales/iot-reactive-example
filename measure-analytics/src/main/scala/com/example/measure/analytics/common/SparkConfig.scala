@@ -8,7 +8,7 @@ import org.apache.spark.sql.SparkSession
   *
   * It may be useful when you are developing in local, but not too much for production environments.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 trait SparkConfig extends SparkComponent {
   /** Set with the name of the master. **/

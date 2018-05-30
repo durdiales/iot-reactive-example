@@ -13,7 +13,7 @@ import scala.concurrent.duration.FiniteDuration
 /**
   * Test to validate if {@link DataLoggerService} works fine.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 class DataLoggerServiceSpec extends AsyncWordSpec with Matchers with BeforeAndAfterAll {
 

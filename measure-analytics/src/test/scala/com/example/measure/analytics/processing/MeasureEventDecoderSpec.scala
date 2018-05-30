@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 /**
   * This spec verifies that {@link MeasureEventDecoder} works as expected to
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 class MeasureEventDecoderSpec extends FlatSpec with Matchers with SparkMatcher with MeasureEventDecoder {
   /** Use spark session from fixture. **/

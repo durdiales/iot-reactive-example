@@ -6,7 +6,7 @@ import org.apache.spark.sql.DataFrame
 /**
   * Allows to consume events from some specific Kafka topic, which are serialized with JSON.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 trait KafkaJsonEventSource extends SparkComponent {
   /** Comma separated list of host:port from the kafka bootstrap servers. **/

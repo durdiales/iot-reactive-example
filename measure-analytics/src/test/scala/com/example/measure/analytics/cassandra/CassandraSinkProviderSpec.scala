@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 /**
   * Verifies that Cassandra sink works fine.
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 class CassandraSinkProviderSpec extends FlatSpec with Matchers with EmbeddedCassandra with SparkTemplate {
   // Ensure everything is properly configured

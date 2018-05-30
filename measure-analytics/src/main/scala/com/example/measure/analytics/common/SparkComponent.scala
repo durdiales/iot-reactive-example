@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
   * It's recommended to extend/mix this trait that give access to some singleton spark session,
   * just for making easy doing dependency injection using the piece of cake pattern
   *
-  * @author durdiales & jazumaquero
+  * @author durdiales
   */
 trait SparkComponent {
 
